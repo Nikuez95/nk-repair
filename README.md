@@ -1,4 +1,4 @@
-# nk_repair
+# NK-Repair [Nikuez#5769]
 A simple script that repairs your vehicle with a nice animation.
 
 # UPDATE 05/08/2021
@@ -15,15 +15,15 @@ A simple script that repairs your vehicle with a nice animation.
 
 
 
-Here is a preview [OUTDATE]:
+# Preview [OUTDATE]:
 https://www.youtube.com/watch?v=pLy_v4SeA34&t
 
 
 
 
-YOU MUST HAVE A PROGRESS BARS, LIKE THIS:
+# Dependencies [OPTIONAL]:
+
+• IF YOU DON'T WANT IT, THAN YOU MUST DELETE THE LINE " 44, 83 and 111"  IN THE client.lua
 
 https://forum.cfx.re/t/release-progress-bars-1-0-standalone/526287
-
-IF YOU DON'T WANT IT, THAN YOU MUST DELETE THE LINE " 44, 83 and 111"  IN THE client.lua
 
