@@ -14,6 +14,6 @@ AddEventHandler("nk-repair:removeitem", function(item, quantita)
     if xPlayer.getInventoryItem(item).count >= (quantita) then
         xPlayer.removeInventoryItem(item, quantita)
     else
-        TriggerClientEvent('esx:showNotification', xPlayer.source, 'Non hai abbastanza item.')
+        TriggerClientEvent('esx:showNotification', xPlayer.source, 'You don\'t have enough: '..item.label)
     end
 end)
