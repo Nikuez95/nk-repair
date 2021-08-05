@@ -4,9 +4,13 @@ A simple script that repairs your vehicle with a nice animation.
 # UPDATE 05/08/2021
 
 • Added a job permission
+
 • Removed the Menu, now start repairing immediately
+
 • You can rapair only Cars and Trucks with this Advanced-Kit
+
 • Fixed the removal of the car jack
+
 • Optimized
 
 
