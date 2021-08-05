@@ -23,6 +23,8 @@ https://www.youtube.com/watch?v=pLy_v4SeA34&t
 
 # Dependencies [OPTIONAL]:
 
+• If you don't want it, than you must delete the line "44, 83, 111" in your client (/client/main.lua)
+
 • IF YOU DON'T WANT IT, THAN YOU MUST DELETE THE LINE " 44, 83 and 111"  IN THE client.lua
 
 https://forum.cfx.re/t/release-progress-bars-1-0-standalone/526287
