@@ -40,7 +40,10 @@ doAction = function(veh)
 	while not HasAnimDictLoaded(dict) or not HasModelLoaded(model) do
 		Citizen.Wait(1)
 	end
-	local vehjack = CreateObject(GetHashKey(model), vehpos.x, vehpos.y, vehpos.z - 0.5, true, true, true)
+	
+	local vehjack = CreateObject(GetHashKey(model), 0, 0, 0, true, true, true) -- fixed by me, avenze, by simply setting the jacks position to 0,0,0 at creation
+	SetEntityCoords(vehjack, vehpos.x, vehpos.y, vehpos.z - 0.5, false, false, false, false) -- and then moving it to it's designated position, simple fix right?
+	
 	exports['progressBars']:startUI(9250, "Positioning the car jack")
 	
 	AttachEntityToEntity(vehjack, veh, 0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, false, false, false, false, 0, true)
