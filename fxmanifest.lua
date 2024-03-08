@@ -1,15 +1,21 @@
 
-fx_version 'bodacious'
+-- [FX Information]
+fx_version 'cerulean'
+use_fxv2_oal 'yes'
+lua54 'yes'
 game 'gta5'
 
-description 'Created by NK-Development [Nikuez#5769]'
+-- [Resource Information]
+name 'NK-Repair'
+author 'NK-Development | Nikuez'
+version '1.8.0'
+description 'An simple repair system for FiveM with cool animations'
 
-client_scripts {
-	'client/*.lua',
-
+-- [Manifest]
+shared_scripts {
+	'shared.lua',
 }
 
-server_scripts {
-	'server/*.lua',
-    
-}
+client_script 'client/main.lua'
+
+server_script 'server/main.lua'
