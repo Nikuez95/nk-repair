@@ -1,19 +1,56 @@
-ESX = nil
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+---@diagnostic disable: need-check-nil, undefined-field
 
-ESX.RegisterUsableItem('kitavanzato', function(source)
-    local xPlayer = ESX.GetPlayerFromId(source)
-	if xPlayer.job.name == "mechanic" then 
-	    TriggerClientEvent('nk-repair:client:triggerMenu', source)
-    end
-end)
+local ESX, QBCore = nil, nil
+local isESX_Version, isQBCore_Version = false, false
 
-RegisterServerEvent("nk-repair:removeitem")
-AddEventHandler("nk-repair:removeitem", function(item, quantita)
-    local xPlayer = ESX.GetPlayerFromId(source)
-    if xPlayer.getInventoryItem(item).count >= (quantita) then
-        xPlayer.removeInventoryItem(item, quantita)
-    else
-        TriggerClientEvent('esx:showNotification', xPlayer.source, 'You don\'t have enough: '..item.label)
+if GetResourceState('es_extended') == 'started' then
+	ESX = exports['es_extended']:getSharedObject()
+
+    ESX.RegisterUsableItem(Shared.ItemUseToRepair, function(source)
+        local xPlayer = ESX.GetPlayerFromId(source)
+
+        if Shared.IsWhitelisted then
+            for k, v in pairs(Shared.WhitelistedJobs) do
+                if xPlayer.job.name == v then
+                    TriggerClientEvent('nk-repair:StartRepair', source)
+                end
+            end
+        else
+            TriggerClientEvent('nk-repair:StartRepair', source)
+        end
+    end)
+
+    isESX_Version = true
+elseif GetResourceState('qb-core') == 'started' then
+	QBCore = exports['qb-core']:GetCoreObject()
+
+    QBCore.Functions.CreateUseableItem(Shared.ItemUseToRepair, function(source)
+        local Player = QBCore.Functions.GetPlayer(source)
+
+        if Shared.IsWhitelisted then
+            for k, v in pairs(Shared.WhitelistedJobs) do
+                if Player.PlayerData.job.name == v then
+                    TriggerClientEvent('nk-repair:StartRepair', source)
+                end
+            end
+        else
+            TriggerClientEvent('nk-repair:StartRepair', source)
+        end
+    end)
+
+    isQBCore_Version = true
+end
+
+
+RegisterServerEvent("nk-repair:removeItem")
+AddEventHandler("nk-repair:removeItem", function(item, qty)
+    if not Shared.MustItemRemove then return end
+
+    if isESX_Version then
+        local xPlayer = ESX.GetPlayerFromId(source)
+        xPlayer.removeInventoryItem(item, qty)
+    elseif isQBCore_Version then
+        local Player = QBCore.Functions.GetPlayer(source)
+        Player.Functions.RemoveItem(item, qty)
     end
 end)
